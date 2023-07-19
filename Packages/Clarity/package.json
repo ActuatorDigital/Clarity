@@ -1,0 +1,16 @@
+{
+  "name": "com.actuator.clarity",
+  "displayName": "Clarity",
+  "version": "0.0.1",
+  "unity": "2021.3",
+  "author": "Actuator Digital",
+  "homepage": "https://github.com/ActuatorDigital/Clarity",
+  "keywords": [
+    "Unity Editor",
+    "Actuator Digital"
+  ],
+  "dependencies": {},
+  "relatedPackages": {},
+  "description": "Editor tool(s) to assist in understanding usage and performance",
+  "type": "tool"
+}
