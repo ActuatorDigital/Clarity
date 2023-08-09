@@ -1,6 +1,6 @@
-﻿using UnityEditor;
+﻿using System.Reflection;
+using UnityEditor;
 using UnityEngine;
-using System.Reflection;
 
 public static class ClarityMenuItems
 {
@@ -17,10 +17,8 @@ public static class ClarityMenuItems
 
         foreach (SearchableEditorWindow window in windows)
         {
-
             if (window.GetType().ToString() == "UnityEditor.SceneHierarchyWindow")
             {
-
                 hierarchy = window;
                 break;
             }
