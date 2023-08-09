@@ -1,7 +1,9 @@
 {
     "name": "Actuator.Clarity.Editor",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "Unity.Settings.Editor"
+    ],
     "includePlatforms": [
         "Editor"
     ],

@@ -9,7 +9,9 @@
     "Unity Editor",
     "Actuator Digital"
   ],
-  "dependencies": {},
+  "dependencies": {
+	  "com.unity.settings-manager":"2.0.1"
+  },
   "relatedPackages": {},
   "description": "Editor tool(s) to assist in understanding usage and performance",
   "type": "tool"
