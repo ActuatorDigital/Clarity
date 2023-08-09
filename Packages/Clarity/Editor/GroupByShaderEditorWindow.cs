@@ -1,11 +1,11 @@
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using System.Linq;
 
 public class GroupByShaderEditorWindow : EditorWindow
 {
-    private string _skipNamePartial = string.Empty;
     private Vector2 _scrollPos;
+    private string _skipNamePartial = string.Empty;
 
     [MenuItem("Window/Clarity/Group By Shaders")]
     public static void ShowWindow()
@@ -26,13 +26,13 @@ public class GroupByShaderEditorWindow : EditorWindow
 
         var grouped = allRenderables.GroupBy(x =>
         {
-            if(x != null
+            if (x != null
             && x.sharedMaterial != null)
                 return x.sharedMaterial.shader;
 
             return null;
         });
-        
+
         GUILayout.Label($"Shaders in use:");
         foreach (var group in grouped)
         {
