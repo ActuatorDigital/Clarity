@@ -10,7 +10,7 @@ These are being used to help identify and optimise use of shaders and texture si
 
 ## Dependencies
 
-- None.
+- [com.unity.settings-manager](https://docs.unity3d.com/Packages/com.unity.settings-manager@2.0/manual/index.html)
 
 ## Installation / Minimum required Setup
 
@@ -26,9 +26,24 @@ https://github.com/ActuatorDigital/Clarity.git?path=Packages/Clarity
 
 Clarity adds the following Menu Item(s).
 
-- `Edit/Clarity/Find All Lights` - Sets the Heirarchy to filter by type `light`.
+- `Edit/Clarity/Find All Lights` - Sets the Hierarchy to filter by type `light`.
 
 Clarity provides the following editor window(s).
+
+### Profile Recorder Alerts
+
+Configured via `Preferences->Clarity`.
+
+!["Clarity ProfileRecorderAlert limits."](img/profilerecorderprefs.png?raw=true "Clarity ProfileRecorderAlert limits.")
+
+In the editor, the matching name [Profiler Recorder](https://docs.unity3d.com/ScriptReference/Unity.Profiling.ProfilerRecorder.html) will be checked during playmode. If the value goes above limit in the settings, a Debug Log Warning will be emitted.
+
+Example workflow:
+
+1. Profile target hardware to determine allowable draw calls per frame.
+2. Set the limit in the Preferences to near that determined value.
+
+These settings are intentionally saved with the project rather than with the user, so limits can be set once and have effect project wide for all developers.
 
 ### Scene Shader Usage
 
