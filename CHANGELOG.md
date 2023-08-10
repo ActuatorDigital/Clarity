@@ -12,4 +12,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GroupByShaderEditorWindow, find and show `Renderers` grouped by the shader they are using.
 - Clarity/Debug_MipMap shader, show a similar effect to the Scene's `Miscellaneous/Mipmaps`, tinting textures blue for magnification, and red for lower than mipmap level 1.
 - GroupByShadowsEditorWindow, find and show all 'Renderers' grouped by the shadow settings they are using.
-- Find All Lights, Edit/Clarity menu item that inserts the t:light search for you
+- Find All Lights, Edit/Clarity menu item that inserts the t:light search for you.
+- ProfileRecorderAlerts, Editor only debug warnings if certain profile recorder values are exceeded, such as DrawCalls per frame.
