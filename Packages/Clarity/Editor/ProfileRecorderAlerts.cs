@@ -43,13 +43,13 @@ public class ProfileRecorderAlerts
 
     private static void WarnIf(ProfilerRecorder setPassCallsRecorder, UserSetting<int> limit, string warningPrefix)
     {
-        if (limit.value == 0) return;
+        if (limit.value <= 0) return;
 
         if(setPassCallsRecorder.Valid 
             && setPassCallsRecorder.IsRunning 
             && setPassCallsRecorder.LastValue > limit.value)
         {
-              Debug.LogWarning($"{warningPrefix} limit exceeded: {setPassCallsRecorder.LastValue} > {limit.value}");
+            Debug.LogWarning($"{warningPrefix} limit exceeded: {setPassCallsRecorder.LastValue} > {limit.value}");
         }
     }
 
