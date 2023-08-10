@@ -84,5 +84,4 @@ InitCodeMarker
 *.blend1
 *.blend2
 *.blend3
-ProjectSettings/Packages/**/Settings.json
 CodeCoverage/
