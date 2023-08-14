@@ -59,13 +59,13 @@ public class GroupByTexturesEditorWindow : EditorWindow
 
     private static IEnumerable<Texture> GetTexturesFromMat(Material mat)
     {
-        if(mat == null)
+        if (mat == null)
         {
             yield break;
         }
 
         var shader = mat.shader;
-        if(shader == null)
+        if (shader == null)
         {
             yield break;
         }
