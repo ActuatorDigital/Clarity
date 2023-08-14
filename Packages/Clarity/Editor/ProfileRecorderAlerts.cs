@@ -1,8 +1,8 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using Actuator;
 using Unity.Profiling;
+using UnityEditor;
 using UnityEditor.SettingsManagement;
-using Actuator;
+using UnityEngine;
 
 [InitializeOnLoad]
 public class ProfileRecorderAlerts

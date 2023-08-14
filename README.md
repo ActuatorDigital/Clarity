@@ -80,6 +80,24 @@ Example workflow:
 6. Return to the window, it will update it's content.
 7. Goto 3.
 
+### Scene Texture Usage
+
+Editor window found in `Window->Clarity/Group By Textures`. Finds all renderers, and shows them grouped by the texture compression mode and size.
+
+!["Scene renderers grouped by texture info."](img/groupbytextureswindow.png?raw=true "Scene renderers grouped by texture info.")
+
+Example workflow:
+
+1. Open a scene.
+2. Open `Group By Textures` window.
+3. Select Texture that is larger than expected or desired
+4. `Isolate` in scene.
+5. Lower max resolution.
+6. No visual difference, Goto 5.
+7. Revert 1 step.
+8. Apply change.
+9. Goto 3.
+
 ## Runtime
 
 Clarity provides the following runtime components.
