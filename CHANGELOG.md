@@ -15,3 +15,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Find All Lights, Edit/Clarity menu item that inserts the t:light search for you.
 - ProfileRecorderAlerts, Editor only debug warnings if certain profile recorder values are exceeded, such as DrawCalls per frame.
 - GroupByTexturesEditorWindow, find and show all 'Textures' and 'Materials' in use in the scene, grouped by the Texture format and size.
+- LocationsEditorWindow, configure and open commonly used paths. These are saved per project so they can be shared among the team easily.
