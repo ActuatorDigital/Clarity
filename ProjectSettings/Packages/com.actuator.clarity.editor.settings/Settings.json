@@ -20,6 +20,11 @@
                 "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "warningLimits.ShadowCasterLimit",
                 "value": "{\"m_Value\":0}"
+            },
+            {
+                "type": "LocationsEditorWindow+LocationsSettingsBlob, Actuator.Clarity.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "key": "locations.LocationsSettingsBlob",
+                "value": "{\"m_Value\":{\"Paths\":[{\"Name\":\"project\",\"Path\":\"./\"},{\"Name\":\"Persistent Data\",\"Path\":\"Application.persistentDataPath\"},{\"Name\":\"Test Folder\",\"Path\":\"TestContext.CurrentContext.TestDirectory\"}]}}"
             }
         ]
     }

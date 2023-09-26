@@ -98,6 +98,26 @@ Example workflow:
 8. Apply change.
 9. Goto 3.
 
+### Locations
+
+Editor window found in `Window->Clarity/Locations`. Shows a list of folders/files configured via `Preferences->Clarity`.
+
+!["Some default and special folders in locations."](img/locations.png?raw=true "Some default and special folders in locations.")
+
+Example workflow:
+
+1. Add relative path to common folder e.g. Name `fmod project`, folder `../fmod_project` via `Preferences->Clarity`.
+2. Open `Locations` window.
+3. Click the `Open` next to the name you've given it.
+
+#### Special Names
+
+Presently Locations supports the follow special names, resolved when requested.
+| Path string| Dynamic Result |
+| --- | --- |
+| `Application.persistentDataPath` | calls `Application.persistentDataPath`|
+| `TestContext.CurrentContext.TestDirectory` | calls `TestContext.CurrentContext.TestDirectory` |
+
 ## Runtime
 
 Clarity provides the following runtime components.
