@@ -36,7 +36,7 @@ Configured via `Preferences->Clarity`.
 
 !["Clarity ProfileRecorderAlert limits."](img/profilerecorderprefs.png?raw=true "Clarity ProfileRecorderAlert limits.")
 
-In the editor, the matching name [Profiler Recorder](https://docs.unity3d.com/ScriptReference/Unity.Profiling.ProfilerRecorder.html) will be checked during playmode. If the value goes above limit in the settings, a Debug Log Warning will be emitted.
+In the editor, the matching name [Profiler Recorder](https://docs.unity3d.com/ScriptReference/Unity.Profiling.ProfilerRecorder.html) will be checked during playmode. If the value goes above limit in the settings, a Debug Log Warning or Error will be emitted. If Hard Error is ticked, Clarity will pause the game with a confirmation dialog box when the error threshold is exceeded.
 
 Example workflow:
 
