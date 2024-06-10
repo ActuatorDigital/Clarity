@@ -1,4 +1,5 @@
-﻿using Actuator;
+﻿using System.Linq;
+using Actuator;
 using Unity.Profiling;
 using UnityEditor;
 using UnityEditor.SettingsManagement;
@@ -14,7 +15,9 @@ public class ProfileRecorderAlerts
         public int ErrorThreshold;
         public bool HardError;
     }
-
+    
+    [UserSetting("Extra Context", "Enbaled")]
+    private static UserSetting<bool> ExtraLogContextEnabled = new UserSetting<bool>(ClarityEditorSettings.Instance, $"warningLimits.{nameof(ExtraLogContextEnabled)}", true, SettingsScope.Project);
     [UserSetting()]
     private static UserSetting<ThresholdValues> SetPassLimit = new UserSetting<ThresholdValues>(ClarityEditorSettings.Instance, $"warningLimits.{nameof(SetPassLimit)}", new ThresholdValues(), SettingsScope.Project);
     [UserSetting()]
@@ -60,7 +63,7 @@ public class ProfileRecorderAlerts
         {
             if (setPassCallsRecorder.LastValue > limit.value.ErrorThreshold)
             {
-                Debug.LogError($"{warningPrefix} limit exceeded: {setPassCallsRecorder.LastValue} > {limit.value}");
+                LogThresholdBreach(LogType.Error, $"{warningPrefix} limit exceeded: {setPassCallsRecorder.LastValue} > {limit.value}");
                 if (limit.value.HardError)
                 {
                     Debug.Break();
@@ -73,9 +76,34 @@ public class ProfileRecorderAlerts
             }
             else if (setPassCallsRecorder.LastValue > limit.value.WarningThreshold)
             {
-                Debug.LogWarning($"{warningPrefix} limit exceeded: {setPassCallsRecorder.LastValue} > {limit.value}");
+                LogThresholdBreach(LogType.Warning, $"{warningPrefix} limit exceeded: {setPassCallsRecorder.LastValue} > {limit.value}");
             }
         }
+    }
+
+    private static void LogThresholdBreach(LogType logType, string message)
+    {
+        if (ExtraLogContextEnabled)
+            message += $"\n\n{GatherExtraContext()}";
+
+        Debug.LogFormat(logType, LogOption.NoStacktrace, null, message);
+    }
+
+    private static string GatherExtraContext()
+    {
+        var lights = GameObject.FindObjectsOfType<Light>()
+            .Where(x => x.isActiveAndEnabled)
+            .Where(x => x.type switch
+            {
+                LightType.Spot or LightType.Point or LightType.Directional => true,
+                _ => false
+            });
+
+        return $@"Dynamic Lights: {lights.Count()}
+Set Pass: {_setPassCallsRecorder.LastValue}
+Draw Calls: {_drawCallsRecorder.LastValue}
+Batches: {_totalBatchesRecorder.LastValue}
+Shadow Casters: {_shadowCastersRecorder.LastValue}";
     }
 
     private static void EnsureAcquired()
