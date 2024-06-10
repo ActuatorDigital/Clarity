@@ -55,13 +55,13 @@ public class ProfileRecorderAlerts
 
     private static void ProcessThresholdLimits(ProfilerRecorder setPassCallsRecorder, UserSetting<ThresholdValues> limit, string warningPrefix)
     {
-        if (limit.value.WarningThreshold <= 0 
-            && limit.value.ErrorThreshold <= 0) return;
+        var warningEnabled = limit.value.WarningThreshold > 0;
+        var errorEnabled = limit.value.ErrorThreshold > 0;
 
         if (setPassCallsRecorder.Valid
             && setPassCallsRecorder.IsRunning)
         {
-            if (setPassCallsRecorder.LastValue > limit.value.ErrorThreshold)
+            if (errorEnabled && (setPassCallsRecorder.LastValue > limit.value.ErrorThreshold))
             {
                 LogThresholdBreach(LogType.Error, $"{warningPrefix} limit exceeded: {setPassCallsRecorder.LastValue} > {limit.value}");
                 if (limit.value.HardError)
@@ -69,14 +69,17 @@ public class ProfileRecorderAlerts
                     Debug.Break();
                     EditorUtility.DisplayDialog(
                         "Clarity Hard Error Threshold", 
-                        $"{warningPrefix} has reached {setPassCallsRecorder.LastValue}, it's error threshold is {limit.value.ErrorThreshold}." +
+                        $"{warningPrefix} has reached {setPassCallsRecorder.LastValue}, the error threshold is {limit.value.ErrorThreshold}." +
                         $"\n\nHard errors can be toggled off in Clarity Project Settings.", 
                         "Understood");
                 }
+                return;
             }
-            else if (setPassCallsRecorder.LastValue > limit.value.WarningThreshold)
+            
+            if (warningEnabled && (setPassCallsRecorder.LastValue > limit.value.WarningThreshold))
             {
                 LogThresholdBreach(LogType.Warning, $"{warningPrefix} limit exceeded: {setPassCallsRecorder.LastValue} > {limit.value}");
+                return;
             }
         }
     }
