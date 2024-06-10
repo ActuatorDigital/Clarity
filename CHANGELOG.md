@@ -16,3 +16,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ProfileRecorderAlerts, Editor only debug warnings/errors if certain profile recorder value thresholds are exceeded, such as DrawCalls per frame.
 - GroupByTexturesEditorWindow, find and show all 'Textures' and 'Materials' in use in the scene, grouped by the Texture format and size.
 - LocationsEditorWindow, configure and open commonly used paths. These are saved per project so they can be shared among the team easily.
+- Add extra info option, to log out all tracked performance recorders and light count, when a threshold is exceeded.
