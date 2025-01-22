@@ -56,11 +56,12 @@ public class SaveBuildReport : IPostprocessBuildWithReport
         //convert the steps to a table
         for (int i = 0; i < report.steps.Length; i++)
         {
-            serialisableReport.steps.Add(new SerialisableBuildStep(i, report.steps[i]));
-            for (int j = 0; j < report.steps[i].messages.Length; j++)
+            var step = report.steps[i];
+            serialisableReport.steps.Add(new SerialisableBuildStep(i, step));
+            var messages = step.messages;
+            for (int j = 0; j < messages.Length; j++)
             {
-                var message = report.steps[i].messages[j];
-                var buildStepMessage = new SerialisableBuildStepMessage(i, message);
+                var buildStepMessage = new SerialisableBuildStepMessage(i, messages[j]);
                 serialisableReport.stepMessages.Add(buildStepMessage);
             }
         }
@@ -68,13 +69,22 @@ public class SaveBuildReport : IPostprocessBuildWithReport
         //convert the packed assets to a table
         for (int i = 0; i < report.packedAssets.Length; i++)
         {
-            serialisableReport.packedAssets.Add(new SerialisablePackedAssets(i, report.packedAssets[i]));
-            for (int j = 0; j < report.packedAssets[i].contents.Length; j++)
+            var packedAsset = report.packedAssets[i];
+            serialisableReport.packedAssets.Add(new SerialisablePackedAssets(i, packedAsset));
+            var packedAssetInfo = report.packedAssets[i].contents;
+            for (int j = 0; j < packedAssetInfo.Length; j++)
             {
-                var content = report.packedAssets[i].contents[j];
-                var packedAssetInfo = new SerialisablePackedAssetInfo(i, content);
-                serialisableReport.packedAssetInfo.Add(packedAssetInfo);
+                var content = packedAssetInfo[j];
+                serialisableReport.packedAssetInfo.Add(new SerialisablePackedAssetInfo(i, content));
             }
+        }
+
+        //convert the files to a table
+        var files = report.GetFiles();
+        for (int i = 0; i < files.Length; i++)
+        {
+            var file = files[i];
+            serialisableReport.files.Add(new SerialisableBuildFile(file));
         }
 
         //convert all to json
@@ -92,6 +102,7 @@ public class SaveBuildReport : IPostprocessBuildWithReport
         public List<SerialisablePackedAssetInfo> packedAssetInfo = new();
         public List<SerialisableBuildStep> steps = new();
         public List<SerialisableBuildStepMessage> stepMessages = new();
+        public List<SerialisableBuildFile> files = new();
     }
 
     [Serializable]
@@ -196,6 +207,23 @@ public class SaveBuildReport : IPostprocessBuildWithReport
             BuildStepIndex = i;
             content = message.content;
             type = message.type.ToString();
+        }
+    }
+
+    [Serializable]
+    public class SerialisableBuildFile
+    {
+        public long id;
+        public string Path;
+        public ulong Size;
+        public string role;
+
+        public SerialisableBuildFile(BuildFile file)
+        {
+            id = file.id;
+            Path = file.path;
+            Size = file.size;
+            role = file.role;
         }
     }
 }
