@@ -16,7 +16,7 @@ public class ProfileRecorderAlerts
         public bool HardError;
     }
     
-    [UserSetting("Extra Context", "Enbaled")]
+    [UserSetting("Extra Context", "Enabled")]
     private static UserSetting<bool> ExtraLogContextEnabled = new UserSetting<bool>(ClarityEditorSettings.Instance, $"warningLimits.{nameof(ExtraLogContextEnabled)}", true, SettingsScope.Project);
     [UserSetting()]
     private static UserSetting<ThresholdValues> SetPassLimit = new UserSetting<ThresholdValues>(ClarityEditorSettings.Instance, $"warningLimits.{nameof(SetPassLimit)}", new ThresholdValues(), SettingsScope.Project);
