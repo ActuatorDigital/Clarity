@@ -21,18 +21,18 @@ public class SaveBuildReport : IPostprocessBuildWithReport
     public void OnPostprocessBuild(BuildReport report)
     {
         if (BuildReportSaveEnabled)
-            DoTheThing(report);
+            GenerateAndSave(report);
     }
 
 #if UNITY_6000_0_OR_NEWER
     [MenuItem("Edit/Clarity/Save Last Build Report")]
     public static void SaveReport()
     {
-        DoTheThing(BuildReport.GetLatestReport());
+        GenerateAndSave(BuildReport.GetLatestReport());
     }
 #endif
 
-    public static void DoTheThing(BuildReport report)
+    public static void GenerateAndSave(BuildReport report)
     {
         string path = Path.Combine(Application.dataPath, BuildReportFolder);
         if (!Directory.Exists(path))
@@ -126,7 +126,9 @@ public class SaveBuildReport : IPostprocessBuildWithReport
         {
             StartTime = summary.buildStartedAt;
             EndedTime = summary.buildEndedAt;
-            //BuildType = summary.;
+#if UNITY_6000_0_OR_NEWER
+            BuildType = summary.buildType.ToString();
+#endif
             GUID = summary.guid.ToString();
             Options = summary.options.ToString();
             OutputPath = summary.outputPath;
