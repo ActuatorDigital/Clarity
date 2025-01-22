@@ -27,6 +27,7 @@ https://github.com/ActuatorDigital/Clarity.git?path=Packages/Clarity
 Clarity adds the following Menu Item(s).
 
 - `Edit/Clarity/Find All Lights` - Sets the Hierarchy to filter by type `light`.
+- `Edit/Clarity/Save Last Build Report` - Converts last unity build report to json format. Saved in location defined in editor preferences.
 
 Clarity provides the following editor window(s).
 
