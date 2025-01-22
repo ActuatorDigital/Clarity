@@ -1,18 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Actuator;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
+using UnityEditor.SettingsManagement;
 using UnityEngine;
 
 public class SaveBuildReport : IPostprocessBuildWithReport
 {
     public int callbackOrder => 0;
 
+    [UserSetting("Build Reports", "Enabled")]
+    private static UserSetting<bool> BuildReportSaveEnabled = new UserSetting<bool>(ClarityEditorSettings.Instance, $"saveBuildReport.{nameof(BuildReportSaveEnabled)}", true, SettingsScope.Project);
+    [UserSetting("Build Reports", "Location")]
+    private static UserSetting<string> BuildReportFolder = new UserSetting<string>(ClarityEditorSettings.Instance, $"saveBuildReport.{nameof(BuildReportFolder)}", "../BuildReports", SettingsScope.Project);
+
+
     public void OnPostprocessBuild(BuildReport report)
     {
-        DoTheThing(report);
+        if (BuildReportSaveEnabled)
+            DoTheThing(report);
     }
 
 #if UNITY_6000_0_OR_NEWER
@@ -25,7 +34,7 @@ public class SaveBuildReport : IPostprocessBuildWithReport
 
     public static void DoTheThing(BuildReport report)
     {
-        string path = Path.Combine(Application.dataPath, "../BuildReports");
+        string path = Path.Combine(Application.dataPath, BuildReportFolder);
         if (!Directory.Exists(path))
         {
             Directory.CreateDirectory(path);
