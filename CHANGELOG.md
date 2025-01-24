@@ -18,3 +18,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - LocationsEditorWindow, configure and open commonly used paths. These are saved per project so they can be shared among the team easily.
 - Add extra info option, to log out all tracked performance recorders and light count, when a threshold is exceeded.
 - Add json format save of build reports for later consumption.
+- Add editor menu item to open build scenes.
