@@ -17,7 +17,6 @@ public class SaveBuildReport : IPostprocessBuildWithReport
     [UserSetting("Build Reports", "Location")]
     private static UserSetting<string> BuildReportFolder = new UserSetting<string>(ClarityEditorSettings.Instance, $"saveBuildReport.{nameof(BuildReportFolder)}", "../BuildReports", SettingsScope.Project);
 
-
     public void OnPostprocessBuild(BuildReport report)
     {
         if (BuildReportSaveEnabled)
@@ -79,6 +78,7 @@ public class SaveBuildReport : IPostprocessBuildWithReport
             }
         }
 
+#if UNITY_6000_0_OR_NEWER
         //convert the files to a table
         var files = report.GetFiles();
         for (int i = 0; i < files.Length; i++)
@@ -86,6 +86,7 @@ public class SaveBuildReport : IPostprocessBuildWithReport
             var file = files[i];
             serialisableReport.files.Add(new SerialisableBuildFile(file));
         }
+#endif
 
         //convert all to json
         var jsonString = JsonUtility.ToJson(serialisableReport, true);

@@ -28,6 +28,7 @@ Clarity adds the following Menu Item(s).
 
 - `Edit/Clarity/Find All Lights` - Sets the Hierarchy to filter by type `light`.
 - `Edit/Clarity/Save Last Build Report` - Converts last unity build report to json format. Saved in location defined in editor preferences.
+- `Edit/Clarity/Open Build Scenes` - Changes EditorSceneManager to have all the scenes in the build unloaded, so that you can switch between scenes the build can access quickly.
 
 Clarity provides the following editor window(s).
 
